@@ -1,7 +1,1613 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8"/><!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="YoungerYouClub — Discover your biological age and reverse it. A precision longevity membership platform with personalized action plans, AI-driven protocols, and science-backed interventions."/>
+<title>YoungerYouClub — Biological Age Operating System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  /* Warm sage-gold accent — softer than pure gold, easier on eyes */
+  --gold:#A8956A;--gold-lt:#D4C4A0;--gold-dk:#7A6B4E;--gold-xs:rgba(168,149,106,0.07);
+
+  /* Deep warm forest backgrounds — NOT harsh black, rich warm dark greens */
+  --ink:#1C2320;--ink2:#232B28;--ink3:#2A3330;--ink4:#313C38;
+
+  /* Muted sage text tones */
+  --muted:#8A9E96;--muted2:#6B7D76;
+
+  /* Warm linen creams — the main text color, never stark white */
+  --cream:#F5F0E8;--cream2:#EAE3D6;--cream3:#D8CFBE;
+
+  /* Soft sage green for success states */
+  --green:#6BB892;--green-bg:rgba(107,184,146,0.09);--green-bd:rgba(107,184,146,0.22);
+
+  /* Muted sky blue and terracotta for info/warning */
+  --blue:#7AAFC4;--red:#C47B6E;--amber:#C4A46B;
+
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --r:8px;--r2:12px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  background:var(--ink);
+  color:var(--cream);
+  font-family:var(--sans);
+  font-weight:300;
+  line-height:1.75;
+  overflow-x:hidden;
+  /* Subtle warm texture overlay for depth without harshness */
+  background-image:radial-gradient(ellipse 120% 80% at 50% 0%, rgba(107,184,146,0.04) 0%, transparent 50%);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:var(--sans)}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--ink2)}
+::-webkit-scrollbar-thumb{background:var(--gold-dk);border-radius:3px}
+
+/* ── SELECTION ── */
+::selection{background:rgba(107,184,146,0.2);color:var(--cream)}
+
+/* ── UTILITY ── */
+.serif{font-family:var(--serif)}
+.gold{color:var(--gold)}
+.muted{color:var(--muted)}
+.section-label{font-size:10px;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
+.gold-line{width:48px;height:1px;background:var(--gold);margin:20px 0;opacity:.5}
+.container{max-width:1200px;margin:0 auto;padding:0 40px}
+
+/* ── NAVIGATION ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 48px;
+  transition:background .4s,padding .3s;
+}
+nav.scrolled{background:rgba(28,35,32,0.97);backdrop-filter:blur(16px);padding:14px 48px;border-bottom:1px solid rgba(107,184,146,0.12)}
+.nav-logo{font-family:var(--serif);font-size:1.3rem;letter-spacing:.05em;color:var(--gold)}
+.nav-logo span{font-style:italic;color:var(--cream)}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--cream)}
+.nav-cta{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;
+  padding:10px 22px;border:1px solid var(--gold);color:var(--gold);
+  background:transparent;transition:all .25s;
+}
+.nav-cta:hover{background:var(--gold);color:var(--ink)}
+.nav-mobile-btn{display:none;background:none;border:none;color:var(--cream);font-size:22px}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:120px 40px 80px;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 55%,rgba(107,184,146,0.06) 0%,transparent 65%),
+    radial-gradient(ellipse 40% 30% at 20% 80%,rgba(168,149,106,0.05) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 20%,rgba(107,184,146,0.04) 0%,transparent 55%);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(107,184,146,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(107,184,146,0.04) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.hero-content{position:relative;z-index:1;max-width:900px}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s forwards;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:32px;height:1px;background:rgba(107,184,146,0.32)}
+.hero-h1{
+  font-family:var(--serif);font-size:clamp(3rem,7vw,6.5rem);
+  font-weight:300;line-height:1.05;color:var(--cream);
+  margin-bottom:24px;opacity:0;animation:fadeUp .8s .35s forwards;
+}
+.hero-h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{
+  font-size:clamp(15px,1.5vw,18px);color:var(--muted);
+  line-height:1.9;max-width:600px;margin:0 auto 36px;
+  opacity:0;animation:fadeUp .8s .5s forwards;
+}
+.hero-actions{
+  display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;
+  margin-bottom:64px;opacity:0;animation:fadeUp .8s .65s forwards;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 32px;background:var(--green);color:var(--ink);
+  font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;
+  border:none;transition:all .25s;
+}
+.btn-primary:hover{background:var(--gold-lt);color:var(--ink);transform:translateY(-1px)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--cream3);border:1px solid rgba(107,184,146,0.16);
+  padding:14px 28px;transition:all .25s;background:transparent;
+}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{
+  display:flex;gap:0;border-top:1px solid rgba(107,184,146,0.1);
+  opacity:0;animation:fadeUp .8s .8s forwards;
+}
+.hero-stat{
+  flex:1;padding:28px 20px;border-right:1px solid rgba(107,184,146,0.1);
+  text-align:center;
+}
+.hero-stat:last-child{border-right:none}
+.stat-num{
+  font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);
+  color:var(--gold);line-height:1;display:block;margin-bottom:6px;
+}
+.stat-lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+
+/* ── TICKER ── */
+.ticker{
+  background:var(--ink3);border-top:1px solid rgba(107,184,146,0.1);
+  border-bottom:1px solid rgba(107,184,146,0.1);
+  padding:14px 0;overflow:hidden;
+}
+.ticker-inner{
+  display:flex;gap:48px;white-space:nowrap;
+  animation:ticker 30s linear infinite;
+}
+.ticker-item{
+  display:flex;align-items:center;gap:10px;
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+  flex-shrink:0;
+}
+.ticker-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0}
+
+/* ── SECTIONS BASE ── */
+section{padding:100px 0}
+.section-header{margin-bottom:56px}
+.section-title{
+  font-family:var(--serif);font-size:clamp(2rem,4vw,3.5rem);
+  font-weight:300;line-height:1.1;color:var(--cream);
+  max-width:680px;
+}
+.section-title em{font-style:italic;color:var(--gold)}
+.section-body{font-size:16px;color:var(--muted);line-height:1.9;max-width:540px;margin-top:16px}
+
+/* ── WHAT YOU GET ── */
+.wyg{background:var(--ink2);border-top:1px solid rgba(107,184,146,0.08);border-bottom:1px solid rgba(107,184,146,0.08)}
+.wyg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(107,184,146,0.08);margin-top:48px}
+.wyg-card{
+  background:var(--ink2);padding:32px 28px;
+  transition:background .2s;
+}
+.wyg-card:hover{background:var(--ink3)}
+.wyg-num{
+  font-family:var(--serif);font-size:2.5rem;color:rgba(107,184,146,0.12);
+  line-height:1;margin-bottom:16px;
+}
+.wyg-icon{font-size:24px;margin-bottom:12px;display:block}
+.wyg-name{font-family:var(--serif);font-size:1.15rem;color:var(--cream);margin-bottom:8px;font-weight:400}
+.wyg-desc{font-size:13px;color:var(--muted);line-height:1.75}
+.wyg-tag{
+  display:inline-block;margin-top:14px;
+  font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  padding:4px 10px;border:1px solid rgba(107,184,146,0.16);color:var(--gold);
+}
+
+/* ── DRIVER ENGINE ── */
+.driver-section{background:var(--ink)}
+.driver-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:48px}
+.driver-list{display:flex;flex-direction:column;gap:0}
+.driver-item{padding:18px 0;border-bottom:1px solid rgba(201,169,110,0.07)}
+.driver-item:last-child{border-bottom:none}
+.driver-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.driver-name{font-size:13px;color:var(--cream2);display:flex;align-items:center;gap:8px}
+.driver-icon{font-size:16px}
+.driver-yrs{font-size:14px;font-weight:500}
+.driver-yrs.high{color:var(--red)}
+.driver-yrs.med{color:var(--amber)}
+.driver-yrs.low{color:var(--muted)}
+.driver-bar-wrap{height:4px;background:rgba(255,255,255,0.05);border-radius:2px}
+.driver-bar{height:4px;border-radius:2px;transition:width 1s ease}
+.driver-bar.high{background:var(--red)}
+.driver-bar.med{background:var(--amber)}
+.driver-bar.low{background:rgba(107,184,146,0.22)}
+.driver-note{font-size:11px;color:var(--muted);margin-top:4px}
+.driver-total{
+  margin-top:20px;padding:16px 20px;
+  background:rgba(226,105,90,0.06);border:1px solid rgba(226,105,90,0.15);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.driver-total-lbl{font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.driver-total-val{font-family:var(--serif);font-size:1.8rem;color:var(--red)}
+
+.interv-panel{display:flex;flex-direction:column;gap:0}
+.interv-head{
+  font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(107,184,146,0.1);
+}
+.interv-item{padding:16px 0;border-bottom:1px solid rgba(201,169,110,0.07)}
+.interv-item:last-child{border-bottom:none}
+.interv-rank{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.interv-name{font-size:13px;color:var(--cream);margin-bottom:6px;font-weight:400;line-height:1.4}
+.interv-meta{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.interv-tags{display:flex;gap:5px;flex-wrap:wrap}
+.interv-tag{font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border:1px solid rgba(107,184,146,0.16);color:var(--muted)}
+.interv-tag.rx{border-color:rgba(91,155,213,0.3);color:var(--blue)}
+.interv-tag.sup{border-color:var(--green-bd);color:var(--green)}
+.interv-pred{font-family:var(--serif);font-size:1.4rem;color:var(--green);white-space:nowrap}
+.interv-conf-wrap{margin-top:8px;height:2px;background:rgba(255,255,255,0.05)}
+.interv-conf-bar{height:2px;background:rgba(93,190,138,0.4)}
+.interv-total-box{
+  margin-top:16px;padding:16px 20px;
+  background:var(--green-bg);border:1px solid var(--green-bd);
+}
+.interv-total-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+.interv-total-val{display:flex;align-items:baseline;gap:12px}
+.interv-total-num{font-family:var(--serif);font-size:2rem;color:var(--green)}
+.interv-total-sub{font-size:11px;color:var(--muted)}
+
+/* ── JOURNEY ── */
+.journey{background:var(--ink2)}
+.journey-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(107,184,146,0.08);margin-top:48px}
+.journey-step{background:var(--ink2);padding:28px 22px;position:relative}
+.step-num{font-family:var(--serif);font-size:2.2rem;color:rgba(107,184,146,0.12);line-height:1;margin-bottom:14px;display:block}
+.step-when{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.step-title{font-family:var(--serif);font-size:1rem;color:var(--cream);margin-bottom:8px;font-weight:400}
+.step-desc{font-size:12px;color:var(--muted);line-height:1.7}
+.step-tag{display:inline-block;margin-top:12px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border:1px solid rgba(107,184,146,0.16);color:var(--gold)}
+
+/* ── WAIT TIME REFRAME ── */
+.wait-section{background:var(--ink)}
+.wait-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.wait-timeline{margin-top:24px;display:flex;flex-direction:column;gap:0;position:relative}
+.wait-timeline::before{content:'';position:absolute;left:11px;top:16px;bottom:16px;width:1px;background:rgba(107,184,146,0.12)}
+.wait-row{display:grid;grid-template-columns:24px 1fr;gap:16px;padding:16px 0;position:relative}
+.wait-dot{width:22px;height:22px;border-radius:50%;border:1px solid rgba(107,184,146,0.22);background:var(--ink);display:flex;align-items:center;justify-content:center;z-index:1;flex-shrink:0}
+.wait-dot.active{border-color:var(--gold);background:rgba(107,184,146,0.1)}
+.wait-dot.done{border-color:var(--green);background:var(--green-bg)}
+.wait-dot i{font-size:11px}
+.wait-day{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.wait-title{font-size:13px;color:var(--cream);font-weight:400;margin-bottom:3px}
+.wait-desc{font-size:11px;color:var(--muted);line-height:1.6}
+.wait-visual{
+  background:var(--ink2);border:1px solid rgba(107,184,146,0.12);
+  padding:32px;text-align:center;
+}
+.wait-ring{
+  width:160px;height:160px;border-radius:50%;
+  border:1.5px solid rgba(107,184,146,0.2);
+  margin:0 auto 20px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;position:relative;
+}
+.wait-ring::before{content:'';position:absolute;inset:10px;border-radius:50%;border:1px solid rgba(107,184,146,0.1)}
+.wait-age{font-family:var(--serif);font-size:3.5rem;color:var(--gold);line-height:1}
+.wait-age-lbl{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.wait-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--green-bg);border:1px solid var(--green-bd);
+  padding:8px 16px;font-size:11px;color:var(--green);margin-top:12px;
+}
+.wait-note{font-size:11px;color:var(--muted);margin-top:12px;line-height:1.6}
+
+/* ── PILLARS ── */
+.pillars{background:var(--ink2)}
+.pillars-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:48px}
+.pillar-card{
+  background:var(--ink);border:1px solid rgba(107,184,146,0.08);
+  padding:24px 18px;transition:border-color .2s;
+}
+.pillar-card:hover{border-color:rgba(107,184,146,0.22)}
+.pillar-icon{font-size:22px;color:var(--gold);margin-bottom:12px;display:block}
+.pillar-name{font-family:var(--serif);font-size:1rem;color:var(--cream);margin-bottom:6px}
+.pillar-items{list-style:none;margin-top:10px}
+.pillar-item{
+  font-size:11px;color:var(--muted);padding:4px 0;
+  border-bottom:1px solid rgba(201,169,110,0.06);
+  display:flex;align-items:flex-start;gap:6px;line-height:1.4;
+}
+.pillar-item:last-child{border-bottom:none}
+.pillar-item::before{content:'·';color:var(--gold);flex-shrink:0;margin-top:-1px}
+
+/* ── COMMUNITY ── */
+.community{background:var(--ink)}
+.community-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:48px}
+.community-spaces{display:flex;flex-direction:column;gap:8px}
+.space-item{
+  display:grid;grid-template-columns:36px 1fr auto;gap:12px;
+  align-items:center;padding:14px 16px;
+  background:var(--ink2);border:1px solid rgba(107,184,146,0.08);
+  transition:border-color .2s;
+}
+.space-item:hover{border-color:rgba(107,184,146,0.16)}
+.space-icon{font-size:16px;color:var(--gold)}
+.space-name{font-size:13px;color:var(--cream);font-weight:400}
+.space-tier{font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;white-space:nowrap}
+.space-tier.all{background:rgba(107,184,146,0.08);color:var(--gold)}
+.space-tier.opt{background:var(--blue-bg, rgba(91,155,213,0.08));color:var(--blue)}
+.space-tier.eli{background:rgba(226,105,90,0.08);color:var(--red)}
+.community-rules{display:flex;flex-direction:column;gap:8px}
+.rule-item{
+  display:grid;grid-template-columns:22px 1fr;gap:10px;
+  padding:12px 14px;border-left:2px solid;
+}
+.rule-item.good{border-left-color:var(--green);background:var(--green-bg)}
+.rule-item.bad{border-left-color:var(--red);background:rgba(226,105,90,0.05)}
+.rule-icon{font-size:14px;margin-top:1px}
+.rule-icon.good{color:var(--green)}
+.rule-icon.bad{color:var(--red)}
+.rule-title{font-size:12px;font-weight:500;color:var(--cream);margin-bottom:2px}
+.rule-desc{font-size:11px;color:var(--muted);line-height:1.6}
+
+/* ── DEVICES ── */
+.devices{background:var(--ink2)}
+.devices-note{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;color:var(--muted);margin-top:12px;
+}
+.devices-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:40px}
+.device-card{
+  background:var(--ink);border:1px solid rgba(107,184,146,0.08);
+  padding:20px 18px;transition:border-color .2s;
+}
+.device-card:hover{border-color:rgba(107,184,146,0.2)}
+.device-card.featured{border-color:rgba(107,184,146,0.2);background:rgba(201,169,110,0.03)}
+.device-tier-label{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.device-icon{font-size:20px;color:var(--gold);margin-bottom:10px;display:block}
+.device-name{font-size:13px;font-weight:500;color:var(--cream);margin-bottom:4px}
+.device-brand{font-size:10px;color:var(--muted);margin-bottom:8px}
+.device-desc{font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:10px}
+.device-tags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px}
+.device-tag{font-size:9px;padding:2px 6px;border:1px solid rgba(107,184,146,0.12);color:var(--muted)}
+.device-bottom{display:flex;align-items:center;justify-content:space-between}
+.device-price{font-size:14px;font-weight:500;color:var(--cream)}
+.device-commission{font-size:10px;color:var(--green)}
+.device-btn{
+  font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  padding:5px 10px;border:1px solid rgba(107,184,146,0.22);
+  color:var(--gold);background:transparent;transition:all .2s;
+}
+.device-btn:hover{background:var(--gold);color:var(--ink)}
+
+/* ── HSA/FSA ── */
+.hsa{background:var(--ink)}
+.hsa-layout{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;margin-bottom:40px}
+.hsa-savings{
+  background:var(--green-bg);border:1px solid var(--green-bd);
+  padding:28px 36px;text-align:center;flex-shrink:0;
+}
+.hsa-savings-num{font-family:var(--serif);font-size:3rem;color:var(--green);line-height:1}
+.hsa-savings-lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.hsa-savings-note{font-size:11px;color:var(--green);margin-top:8px}.hsa-cols{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(107,184,146,0.08)}
+.hsa-col{background:var(--ink2);padding:28px 32px}
+.hsa-col-head{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.hsa-col-icon{width:32px;height:32px;border:1px solid;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.hsa-col-icon.green{border-color:var(--green-bd);color:var(--green)}
+.hsa-col-icon.amber{border-color:rgba(232,168,58,0.3);color:var(--amber)}
+.hsa-col-title{font-size:11px;letter-spacing:.15em;text-transform:uppercase}
+.hsa-col-title.green{color:var(--green)}
+.hsa-col-title.amber{color:var(--amber)}
+.hsa-item{display:flex;align-items:flex-start;gap:8px;padding:10px 0;border-bottom:1px solid rgba(201,169,110,0.06)}
+.hsa-item:last-child{border-bottom:none}
+.hsa-dot{width:6px;height:6px;border-radius:50%;margin-top:6px;flex-shrink:0}
+.hsa-dot.green{background:var(--green)}
+.hsa-dot.amber{background:var(--amber)}
+.hsa-item-name{font-size:12px;color:var(--cream2);font-weight:400;margin-bottom:2px}
+.hsa-item-detail{font-size:11px;color:var(--muted);line-height:1.5}
+.hsa-status{display:inline-block;margin-top:4px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px}
+.hsa-status.elig{background:var(--green-bg);border:1px solid var(--green-bd);color:var(--green)}
+.hsa-status.var{background:rgba(232,168,58,0.08);border:1px solid rgba(232,168,58,0.25);color:var(--amber)}
+
+/* ── MEMBERSHIP ── */
+.membership{background:var(--ink2);text-align:center}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:960px;margin:48px auto 0}
+.plan{
+  background:var(--ink);border:1px solid rgba(107,184,146,0.1);
+  padding:32px 28px;text-align:left;position:relative;transition:border-color .2s;
+}
+.plan:hover{border-color:rgba(107,184,146,0.2)}
+.plan.featured{border-color:var(--green);background:rgba(107,184,146,0.04)}
+.plan-badge{
+  position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+  font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  background:var(--green);color:var(--ink);padding:4px 14px;white-space:nowrap;
+}
+.plan-name{font-family:var(--serif);font-size:1.5rem;font-weight:300;color:var(--cream);margin-bottom:4px}
+.plan-tagline{font-size:11px;color:var(--muted);margin-bottom:20px}
+.plan-price{font-family:var(--serif);font-size:2.8rem;font-weight:300;color:var(--gold);line-height:1}
+.plan-price sup{font-size:1.2rem;vertical-align:super}
+.plan-period{font-size:11px;color:var(--muted);margin:4px 0 16px}
+.plan-desc{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(107,184,146,0.08)}
+.plan-features{list-style:none;margin-bottom:24px}
+.plan-feature{
+  display:flex;align-items:flex-start;gap:8px;
+  font-size:12px;color:var(--muted);padding:6px 0;
+  border-bottom:1px solid rgba(201,169,110,0.06);line-height:1.4;
+}
+.plan-feature:last-child{border-bottom:none}
+.plan-feature::before{content:'✦';font-size:8px;color:var(--gold);flex-shrink:0;margin-top:3px}
+.plan-btn{
+  width:100%;padding:12px;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;font-weight:500;border:1px solid var(--gold);
+  color:var(--gold);background:transparent;transition:all .25s;
+}
+.plan.featured .plan-btn{background:var(--green);color:var(--ink);border-color:var(--green)}
+.plan-btn:hover{background:var(--gold);color:var(--ink)}
+.plans-note{font-size:11px;color:var(--muted);margin-top:20px}
+.plans-note span{color:var(--green)}
+
+/* ── REFERRAL ── */
+.referral{background:var(--ink);border-top:1px solid rgba(107,184,146,0.08)}
+.referral-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.referral-rewards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px}
+.reward-card{background:var(--ink2);border:1px solid rgba(107,184,146,0.1);padding:20px}
+.reward-icon{font-size:20px;color:var(--gold);margin-bottom:8px;display:block}
+.reward-title{font-size:12px;font-weight:500;color:var(--cream);margin-bottom:4px}
+.reward-desc{font-size:11px;color:var(--muted);line-height:1.6}
+.flywheel{background:var(--ink2);border:1px solid rgba(107,184,146,0.1);padding:28px}
+.flywheel-title{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.flywheel-steps{display:flex;flex-direction:column;gap:0}
+.flywheel-step{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(201,169,110,0.06)}
+.flywheel-step:last-child{border-bottom:none}
+.flywheel-arrow{font-size:12px;color:rgba(107,184,146,0.22)}
+.flywheel-text{font-size:12px;color:var(--cream2)}
+
+/* ── FINAL CTA ── */
+.final-cta{
+  background:var(--ink2);border-top:1px solid rgba(107,184,146,0.1);
+  padding:120px 0;text-align:center;
+}
+.final-cta-title{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;color:var(--cream);margin-bottom:16px}
+.final-cta-title em{font-style:italic;color:var(--gold)}
+.final-cta-sub{font-size:15px;color:var(--muted);max-width:500px;margin:0 auto 36px;line-height:1.8}
+.final-cta-note{font-size:11px;color:var(--muted);margin-top:16px}
+.final-cta-note span{color:var(--green)}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);border-top:1px solid rgba(107,184,146,0.08);padding:64px 0 32px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand-name{font-family:var(--serif);font-size:1.4rem;color:var(--gold);margin-bottom:10px}
+.footer-brand-name span{font-style:italic;color:var(--cream)}
+.footer-brand-desc{font-size:12px;color:var(--muted);line-height:1.8;max-width:260px}
+.footer-col-title{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-links a{font-size:12px;color:var(--muted);transition:color .2s}
+.footer-links a:hover{color:var(--cream)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid rgba(107,184,146,0.08)}
+.footer-copy{font-size:11px;color:var(--muted2)}
+.footer-tagline{font-family:var(--serif);font-size:13px;font-style:italic;color:var(--gold);opacity:.7}
+.footer-legal{display:flex;gap:16px}
+.footer-legal a{font-size:11px;color:var(--muted2);transition:color .2s}
+.footer-legal a:hover{color:var(--muted)}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .container{padding:0 24px}
+  nav{padding:16px 24px}
+  nav.scrolled{padding:12px 24px}
+  .nav-links{display:none}
+  .nav-mobile-btn{display:block}
+  .driver-layout,.wait-layout,.community-layout,.referral-layout,.hsa-layout,.footer-grid{grid-template-columns:1fr}
+  .wyg-grid{grid-template-columns:1fr 1fr}
+  .journey-steps{grid-template-columns:1fr 1fr}
+  .pillars-grid{grid-template-columns:1fr 1fr}
+  .devices-grid{grid-template-columns:1fr 1fr}
+  .plans{grid-template-columns:1fr}
+  .referral-rewards{grid-template-columns:1fr}
+  .hsa-cols{grid-template-columns:1fr}
+  .hsa-savings{text-align:left}
+}
+@media(max-width:640px){
+  section{padding:64px 0}
+  .hero{padding:100px 24px 60px}
+  .hero-stat{padding:20px 12px}
+  .wyg-grid{grid-template-columns:1fr}
+  .journey-steps{grid-template-columns:1fr}
+  .pillars-grid{grid-template-columns:1fr}
+  .devices-grid{grid-template-columns:1fr}
+  .hsa-cols{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Younger<span>You</span>Club</a>
+  <div class="nav-links">
+    <a href="#how-it-works">How it works</a>
+    <a href="#pillars">Protocols</a>
+    <a href="#community">Community</a>
+    <a href="#devices">Devices</a>
+    <a href="#membership">Membership</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('membership').scrollIntoView({behavior:'smooth'})">Start your plan</button>
+  <button class="nav-mobile-btn" aria-label="Open menu">☰</button>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Biological Age Operating System</div>
+    <h1 class="hero-h1">
+      Find out what's aging<br>you fastest.<br>
+      Then <em>reverse it.</em>
+    </h1>
+    <p class="hero-sub">
+      YoungerYouClub isn't a test. It's a complete personalized system — powered by your DNA methylation, blood labs, wearables, and symptoms — that tells you exactly what to do, in what order, and whether it's working.
+    </p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('membership').scrollIntoView({behavior:'smooth'})">
+        Get my personalized plan
+      </button>
+      <button class="btn-ghost" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">
+        See how it works
+      </button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="stat-num">12+</span>
+        <span class="stat-lbl">Years reversed on average</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">60+</span>
+        <span class="stat-lbl">Biomarkers tracked</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">90</span>
+        <span class="stat-lbl">Day re-test cycles</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">5</span>
+        <span class="stat-lbl">Longevity pillars</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="ticker">
+  <div class="ticker-inner" id="ticker">
+    <span class="ticker-item"><span class="ticker-dot"></span>TrueAge epigenetic testing</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>AI-powered aging driver breakdown</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Personalized intervention ranking</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Oura · WHOOP · Apple Watch integration</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>60+ biomarker blood panels</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>HSA / FSA eligible</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>90-day progress re-test</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Physician referral network</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>TrueAge epigenetic testing</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>AI-powered aging driver breakdown</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Personalized intervention ranking</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Oura · WHOOP · Apple Watch integration</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>60+ biomarker blood panels</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>HSA / FSA eligible</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>90-day progress re-test</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Physician referral network</span>
+  </div>
+</div>
+
+<!-- ── WHAT YOU GET ── -->
+<section class="wyg" id="what-you-get">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Your personalized action plan</span>
+      <h2 class="section-title">Not a test. A complete system<br><em>built around your biology.</em></h2>
+      <p class="section-body">Most platforms stop at "your biological age is 42." We start there. Within 7 days of joining you receive six concrete deliverables — all built from your data, all telling you exactly what to do next.</p>
+    </div>
+    <div class="wyg-grid">
+      <div class="wyg-card reveal">
+        <div class="wyg-num">01</div>
+        <span class="wyg-icon">🧬</span>
+        <div class="wyg-name">Your biological age score</div>
+        <p class="wyg-desc">Your true cellular age from DNA methylation — not an estimate, a measurement. Powered by TrueAge and updated every 90 days as you progress.</p>
+        <span class="wyg-tag">TrueAge powered</span>
+      </div>
+      <div class="wyg-card reveal">
+        <div class="wyg-num">02</div>
+        <span class="wyg-icon">🔥</span>
+        <div class="wyg-name">Aging driver breakdown</div>
+        <p class="wyg-desc">Exactly what is aging you fastest — inflammation, insulin resistance, sleep, hormones — ranked in years of impact. This is what no one else shows you.</p>
+        <span class="wyg-tag">Your biggest levers</span>
+      </div>
+      <div class="wyg-card reveal">
+        <div class="wyg-num">03</div>
+        <span class="wyg-icon">⚡</span>
+        <div class="wyg-name">Top 3 interventions</div>
+        <p class="wyg-desc">The three actions predicted to reduce your biological age fastest, ranked specifically for your phenotype with confidence scores and expected impact.</p>
+        <span class="wyg-tag">AI-ranked for you</span>
+      </div>
+      <div class="wyg-card reveal">
+        <div class="wyg-num">04</div>
+        <span class="wyg-icon">📋</span>
+        <div class="wyg-name">Daily protocol</div>
+        <p class="wyg-desc">A simple, prioritized daily checklist — supplements, movement, sleep habits, nutrition timing — built from your intake, labs, and wearable data.</p>
+        <span class="wyg-tag">Updated monthly</span>
+      </div>
+      <div class="wyg-card reveal">
+        <div class="wyg-num">05</div>
+        <span class="wyg-icon">🛍️</span>
+        <div class="wyg-name">Curated product picks</div>
+        <p class="wyg-desc">Every supplement, wearable, and tool in your plan links directly to a vetted recommendation — only what your data says you actually need.</p>
+        <span class="wyg-tag">HSA/FSA eligible</span>
+      </div>
+      <div class="wyg-card reveal">
+        <div class="wyg-num">06</div>
+        <span class="wyg-icon">🔄</span>
+        <div class="wyg-name">90-day progress cycle</div>
+        <p class="wyg-desc">Every quarter we re-measure, compare predicted vs actual, and update your entire plan. Your protocol evolves as your biology responds.</p>
+        <span class="wyg-tag">Continuous feedback loop</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AGING DRIVER ENGINE ── -->
+<section class="driver-section" id="aging-engine">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">The aging driver engine</span>
+      <h2 class="section-title">"Your biological age is 42"<br><em>isn't useful. This is.</em></h2>
+      <p class="section-body">We don't just tell you a number. We tell you exactly what is driving that number — ranked by years of impact — and what to do about each one first.</p>
+    </div>
+    <div class="driver-layout">
+      <div class="reveal">
+        <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px">Sample member · biological age 38 · chronological age 47</div>
+        <div class="driver-list">
+          <div class="driver-item">
+            <div class="driver-hd">
+              <div class="driver-name"><span class="driver-icon">🔥</span> Chronic inflammation</div>
+              <div class="driver-yrs high">+3.2 years</div>
+            </div>
+            <div class="driver-bar-wrap"><div class="driver-bar high" style="width:82%"></div></div>
+            <div class="driver-note">hsCRP 1.2 mg/L · above optimal floor · primary target</div>
+          </div>
+          <div class="driver-item">
+            <div class="driver-hd">
+              <div class="driver-name"><span class="driver-icon">💧</span> Insulin resistance</div>
+              <div class="driver-yrs high">+2.1 years</div>
+            </div>
+            <div class="driver-bar-wrap"><div class="driver-bar high" style="width:54%"></div></div>
+            <div class="driver-note">HbA1c 4.9% · fasting insulin borderline · CGM variability high</div>
+          </div>
+          <div class="driver-item">
+            <div class="driver-hd">
+              <div class="driver-name"><span class="driver-icon">🌙</span> Sleep fragmentation</div>
+              <div class="driver-yrs med">+1.4 years</div>
+            </div>
+            <div class="driver-bar-wrap"><div class="driver-bar med" style="width:36%"></div></div>
+            <div class="driver-note">Oura: avg 2.1 wake events · REM deficit 18 min/night</div>
+          </div>
+          <div class="driver-item">
+            <div class="driver-hd">
+              <div class="driver-name"><span class="driver-icon">⚗️</span> Androgen imbalance</div>
+              <div class="driver-yrs med">+0.8 years</div>
+            </div>
+            <div class="driver-bar-wrap"><div class="driver-bar med" style="width:20%"></div></div>
+            <div class="driver-note">Free testosterone 9.2 pg/mL · below optimal 12–25 range</div>
+          </div>
+          <div class="driver-item">
+            <div class="driver-hd">
+              <div class="driver-name"><span class="driver-icon">☀️</span> Micronutrient gaps</div>
+              <div class="driver-yrs low">+0.4 years</div>
+            </div>
+            <div class="driver-bar-wrap"><div class="driver-bar low" style="width:10%"></div></div>
+            <div class="driver-note">Vitamin D 34 ng/mL · B12 borderline low</div>
+          </div>
+        </div>
+        <div class="driver-total">
+          <span class="driver-total-lbl">Total addressable aging burden</span>
+          <span class="driver-total-val">+7.9 years</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="interv-head">AI intervention simulator · ranked for your phenotype</div>
+        <div class="interv-panel">
+          <div class="interv-item">
+            <div class="interv-rank">Intervention #1 · highest predicted impact</div>
+            <div class="interv-name">12-week metformin + Zone 2 cardio protocol (4× / week)</div>
+            <div class="interv-meta">
+              <div class="interv-tags">
+                <span class="interv-tag rx">Rx required</span>
+                <span class="interv-tag">Exercise</span>
+              </div>
+              <div class="interv-pred">−1.8 yrs</div>
+            </div>
+            <div class="interv-conf-wrap"><div class="interv-conf-bar" style="width:78%"></div></div>
+          </div>
+          <div class="interv-item">
+            <div class="interv-rank">Intervention #2</div>
+            <div class="interv-name">Sleep consolidation protocol — CBT-I + Magnesium + Phosphatidylserine</div>
+            <div class="interv-meta">
+              <div class="interv-tags">
+                <span class="interv-tag sup">Supplement</span>
+                <span class="interv-tag">Behavioral</span>
+              </div>
+              <div class="interv-pred">−1.1 yrs</div>
+            </div>
+            <div class="interv-conf-wrap"><div class="interv-conf-bar" style="width:82%"></div></div>
+          </div>
+          <div class="interv-item">
+            <div class="interv-rank">Intervention #3</div>
+            <div class="interv-name">High-dose Omega-3 + hsCRP reduction stack</div>
+            <div class="interv-meta">
+              <div class="interv-tags">
+                <span class="interv-tag sup">Supplement</span>
+              </div>
+              <div class="interv-pred">−0.6 yrs</div>
+            </div>
+            <div class="interv-conf-wrap"><div class="interv-conf-bar" style="width:71%"></div></div>
+          </div>
+        </div>
+        <div class="interv-total-box">
+          <div class="interv-total-lbl">Combined 90-day prediction</div>
+          <div class="interv-total-val">
+            <span class="interv-total-num">−3.5 yrs</span>
+            <span class="interv-total-sub">model confidence 74%</span>
+          </div>
+        </div>
+        <div style="margin-top:16px;font-size:11px;color:var(--muted);line-height:1.7">Predictions are based on your specific phenotype and our growing database of intervention-response data points. Every 90-day cycle, predicted vs actual is compared and your model recalibrates.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS / JOURNEY ── -->
+<section class="journey" id="how-it-works">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">How it works</span>
+      <h2 class="section-title">From sign-up to your first<br><em>action plan in 7 days</em></h2>
+      <p class="section-body">You get value on day one — not when your test comes back. Here's how the first 30 days work, and why the wait for your TrueAge result becomes anticipation, not frustration.</p>
+    </div>
+    <div class="journey-steps reveal">
+      <div class="journey-step">
+        <span class="step-num">01</span>
+        <div class="step-when">Day 1 · 15 min</div>
+        <div class="step-title">Complete your intake</div>
+        <p class="step-desc">40 questions about sleep, energy, hormones, stress, nutrition, and history. The more detail, the more precise your plan.</p>
+        <span class="step-tag">Powers everything</span>
+      </div>
+      <div class="journey-step">
+        <span class="step-num">02</span>
+        <div class="step-when">Day 1 · 2 min</div>
+        <div class="step-title">Connect your wearables</div>
+        <p class="step-desc">Link Oura, WHOOP, or Apple Watch in one tap. Your wearable data immediately feeds your estimated biological age score.</p>
+        <span class="step-tag">Instant value</span>
+      </div>
+      <div class="journey-step">
+        <span class="step-num">03</span>
+        <div class="step-when">Days 1–3</div>
+        <div class="step-title">Receive TrueAge kit</div>
+        <p class="step-desc">A 15-minute finger prick at home — no clinic visit, no needle. Just 6–7 drops of blood on a card, mailed back prepaid.</p>
+        <span class="step-tag">Painless · at home</span>
+      </div>
+      <div class="journey-step">
+        <span class="step-num">04</span>
+        <div class="step-when">Day 5–7</div>
+        <div class="step-title">AI builds your plan</div>
+        <p class="step-desc">Labs + wearables + intake → your aging driver breakdown, top 3 interventions, daily protocol, and product picks. All in one dashboard.</p>
+        <span class="step-tag">Full plan live</span>
+      </div>
+      <div class="journey-step">
+        <span class="step-num">05</span>
+        <div class="step-when">Day ~22 · exciting</div>
+        <div class="step-title">TrueAge result arrives</div>
+        <p class="step-desc">Your epigenetic score lands and either confirms your estimate (trust) or refines it (better plan). Either way, it's a milestone moment.</p>
+        <span class="step-tag">The confirmation shot</span>
+      </div>
+    </div>
+
+    <!-- WAIT TIME REFRAME -->
+    <div class="wait-section" style="background:transparent;padding:48px 0 0">
+      <div class="wait-layout reveal">
+        <div>
+          <span class="section-label">About the TrueAge test</span>
+          <h3 class="section-title" style="font-size:clamp(1.5rem,3vw,2.2rem)">The finger prick is<br><em>easier than you think</em></h3>
+          <div class="gold-line"></div>
+          <p class="section-body" style="margin-top:0">No needle. No clinic. No vials. Just a lancet included in your kit — the same as a diabetic glucose check. Takes 15 minutes at your kitchen table.</p>
+          <div class="wait-timeline">
+            <div class="wait-row">
+              <div class="wait-dot done"><span style="font-size:10px;color:var(--green)">✓</span></div>
+              <div>
+                <div class="wait-day">Day 1 — immediately</div>
+                <div class="wait-title">Estimated bio age from wearables + labs</div>
+                <div class="wait-desc">Your dashboard is live. Aging driver breakdown generated. Daily protocol starts today.</div>
+              </div>
+            </div>
+            <div class="wait-row">
+              <div class="wait-dot active"><span style="font-size:10px;color:var(--gold)">●</span></div>
+              <div>
+                <div class="wait-day">Days 1–3</div>
+                <div class="wait-title">Kit arrives · 15-min finger prick · mail back</div>
+                <div class="wait-desc">Everything included. Prepaid FedEx label. You're already following your protocol.</div>
+              </div>
+            </div>
+            <div class="wait-row">
+              <div class="wait-dot"><span style="font-size:10px;color:var(--muted)">○</span></div>
+              <div>
+                <div class="wait-day">Days 4–22 — weekly updates</div>
+                <div class="wait-title">Wearable data updates your score daily</div>
+                <div class="wait-desc">"Your HRV improved 8ms — estimated bio age shifted." The wait becomes a progress tracker.</div>
+              </div>
+            </div>
+            <div class="wait-row">
+              <div class="wait-dot"><span style="font-size:10px;color:var(--muted)">○</span></div>
+              <div>
+                <div class="wait-day">Day ~22 — the milestone</div>
+                <div class="wait-title">TrueAge result confirms + refines your plan</div>
+                <div class="wait-desc">Epigenetic score arrives. Dashboard upgrades. Plan recalibrates. This is the moment.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wait-visual reveal">
+          <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:20px">Your dashboard from day 1</div>
+          <div class="wait-ring">
+            <div class="wait-age">38</div>
+            <div class="wait-age-lbl">Bio age</div>
+          </div>
+          <div class="wait-badge">
+            <span style="color:var(--green)">▼</span> −9 years reversed
+          </div>
+          <div class="wait-note">Estimated from wearables + labs<br>from day one — no waiting required</div>
+          <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(107,184,146,0.1)">
+            <div style="font-size:10px;color:var(--muted);margin-bottom:10px;letter-spacing:.1em;text-transform:uppercase">Data inputs live</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px">
+                <span style="color:var(--cream2)">Oura Ring</span>
+                <span style="color:var(--green)">Live ●</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px">
+                <span style="color:var(--cream2)">Blood labs</span>
+                <span style="color:var(--green)">Uploaded ●</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px">
+                <span style="color:var(--cream2)">Intake questionnaire</span>
+                <span style="color:var(--green)">Complete ●</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px">
+                <span style="color:var(--cream2)">TrueAge methylation</span>
+                <span style="color:var(--amber)">Processing ◐</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LONGEVITY PILLARS ── -->
+<section class="pillars" id="pillars">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Longevity pillars</span>
+      <h2 class="section-title">Every lever of aging,<br><em>optimized for you</em></h2>
+      <p class="section-body">Your plan addresses all five pillars. Each includes curated supplements, lifestyle interventions, and affiliate-linked products — matched to your intake responses and aging drivers.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card reveal">
+        <span class="pillar-icon">🌙</span>
+        <div class="pillar-name">Sleep</div>
+        <ul class="pillar-items">
+          <li class="pillar-item">Insomnia protocol — CBT-I approach</li>
+          <li class="pillar-item">3am waking — cortisol & blood sugar fix</li>
+          <li class="pillar-item">Magnesium, L-Theanine, Apigenin stack</li>
+          <li class="pillar-item">Oura / Eight Sleep integration</li>
+          <li class="pillar-item">Circadian rhythm optimization</li>
+        </ul>
+      </div>
+      <div class="pillar-card reveal">
+        <span class="pillar-icon">🌿</span>
+        <div class="pillar-name">Nutrition & Metabolic</div>
+        <ul class="pillar-items">
+          <li class="pillar-item">CGM glucose optimization</li>
+          <li class="pillar-item">Fasting & autophagy protocols</li>
+          <li class="pillar-item">NMN, Resveratrol, Spermidine</li>
+          <li class="pillar-item">Anti-inflammatory nutrition plan</li>
+          <li class="pillar-item">Gut microbiome support</li>
+        </ul>
+      </div>
+      <div class="pillar-card reveal">
+        <span class="pillar-icon">⚡</span>
+        <div class="pillar-name">Movement & Fitness</div>
+        <ul class="pillar-items">
+          <li class="pillar-item">Zone 2 cardio & VO₂ max protocols</li>
+          <li class="pillar-item">Strength & muscle preservation</li>
+          <li class="pillar-item">Sauna & cold plunge recovery</li>
+          <li class="pillar-item">HRV-guided training load</li>
+          <li class="pillar-item">Red light therapy</li>
+        </ul>
+      </div>
+      <div class="pillar-card reveal">
+        <span class="pillar-icon">🧠</span>
+        <div class="pillar-name">Mind & Stress</div>
+        <ul class="pillar-items">
+          <li class="pillar-item">HRV biofeedback — HeartMath</li>
+          <li class="pillar-item">Ashwagandha, Rhodiola, adaptogens</li>
+          <li class="pillar-item">Breathwork & meditation tools</li>
+          <li class="pillar-item">Cortisol curve testing</li>
+          <li class="pillar-item">Apollo Neuro nervous system</li>
+        </ul>
+      </div>
+      <div class="pillar-card reveal">
+        <span class="pillar-icon">⚗️</span>
+        <div class="pillar-name">Interventions</div>
+        <ul class="pillar-items">
+          <li class="pillar-item">Hormone optimization referrals</li>
+          <li class="pillar-item">Peptide therapy guidance</li>
+          <li class="pillar-item">NAD+ supplementation & IV</li>
+          <li class="pillar-item">Rapamycin & metformin protocols</li>
+          <li class="pillar-item">Telehealth physician network</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── COMMUNITY ── -->
+<section class="community" id="community">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Member community</span>
+      <h2 class="section-title">Longevity is better<br><em>with people who get it</em></h2>
+      <p class="section-body">A private, moderated community on Circle — built for serious, science-minded people. Not a Facebook group. Not a Discord. A curated space where your wins are celebrated and your questions get real answers.</p>
+    </div>
+    <div class="community-layout">
+      <div class="reveal">
+        <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Community spaces</div>
+        <div class="community-spaces">
+          <div class="space-item">
+            <span class="space-icon">💬</span>
+            <div>
+              <div class="space-name">The Lounge</div>
+              <div style="font-size:11px;color:var(--muted)">Intros, wins, general longevity discussion</div>
+            </div>
+            <span class="space-tier all">All plans</span>
+          </div>
+          <div class="space-item">
+            <span class="space-icon">🏆</span>
+            <div>
+              <div class="space-name">Wins board</div>
+              <div style="font-size:11px;color:var(--muted)">Share your 90-day re-test results</div>
+            </div>
+            <span class="space-tier all">All plans</span>
+          </div>
+          <div class="space-item">
+            <span class="space-icon">🌙</span>
+            <div>
+              <div class="space-name">Sleep lab</div>
+              <div style="font-size:11px;color:var(--muted)">Oura screenshots, sleep protocol Q&A</div>
+            </div>
+            <span class="space-tier all">All plans</span>
+          </div>
+          <div class="space-item">
+            <span class="space-icon">💊</span>
+            <div>
+              <div class="space-name">Supplement stack</div>
+              <div style="font-size:11px;color:var(--muted)">What's working, dosing, brand comparisons</div>
+            </div>
+            <span class="space-tier all">All plans</span>
+          </div>
+          <div class="space-item">
+            <span class="space-icon">🔬</span>
+            <div>
+              <div class="space-name">Lab results decoded</div>
+              <div style="font-size:11px;color:var(--muted)">Anonymized results discussion</div>
+            </div>
+            <span class="space-tier opt">Optimizer+</span>
+          </div>
+          <div class="space-item">
+            <span class="space-icon">🧪</span>
+            <div>
+              <div class="space-name">Advanced interventions</div>
+              <div style="font-size:11px;color:var(--muted)">TRT, GLP-1, peptides, rapamycin</div>
+            </div>
+            <span class="space-tier eli">Elite only</span>
+          </div>
+          <div class="space-item">
+            <span class="space-icon">📅</span>
+            <div>
+              <div class="space-name">Monthly live Q&A</div>
+              <div style="font-size:11px;color:var(--muted)">60-min Zoom with expert guests · recorded</div>
+            </div>
+            <span class="space-tier opt">Optimizer+</span>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Community covenant</div>
+        <div class="community-rules">
+          <div class="rule-item good">
+            <span class="rule-icon good">✓</span>
+            <div>
+              <div class="rule-title">Share results, not advice</div>
+              <div class="rule-desc">"This worked for me" is always welcome. "You should do X" is not — we are fellow travelers, not doctors to each other.</div>
+            </div>
+          </div>
+          <div class="rule-item good">
+            <span class="rule-icon good">✓</span>
+            <div>
+              <div class="rule-title">Positivity is non-negotiable</div>
+              <div class="rule-desc">Celebrate every win. This is a community of people trying — that alone deserves respect.</div>
+            </div>
+          </div>
+          <div class="rule-item good">
+            <span class="rule-icon good">✓</span>
+            <div>
+              <div class="rule-title">Evidence over opinion</div>
+              <div class="rule-desc">Link a study or share your data. We follow the science, not the trend.</div>
+            </div>
+          </div>
+          <div class="rule-item bad">
+            <span class="rule-icon bad">✗</span>
+            <div>
+              <div class="rule-title">No selling or self-promotion</div>
+              <div class="rule-desc">No products, courses, or services without mod approval. One violation = warning. Two = removal.</div>
+            </div>
+          </div>
+          <div class="rule-item bad">
+            <span class="rule-icon bad">✗</span>
+            <div>
+              <div class="rule-title">No fear-based content</div>
+              <div class="rule-desc">This community is built on hope and optimization. No doom-posting. Keep it constructive.</div>
+            </div>
+          </div>
+          <div class="rule-item bad">
+            <span class="rule-icon bad">✗</span>
+            <div>
+              <div class="rule-title">Clinical questions → physician portal</div>
+              <div class="rule-desc">Peer advice on clinical decisions is not appropriate here. Use your physician consult feature.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DEVICE STORE ── -->
+<section class="devices" id="devices">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Recommended kit</span>
+      <h2 class="section-title">Not a store. Your<br><em>prescribed device stack.</em></h2>
+      <p class="section-body">Every device recommendation in your plan is personalized to your aging drivers. Oura surfaces for sleep members. CGM for metabolic. Joovv for inflammation. Each links to a vetted partner — never generic, always data-driven.</p>
+      <div class="devices-note">
+        <span style="width:4px;height:4px;border-radius:50%;background:var(--green);flex-shrink:0"></span>
+        All purchases through your dashboard support YoungerYouClub at no extra cost to you
+      </div>
+    </div>
+    <div class="devices-grid">
+      <div class="device-card featured reveal">
+        <div class="device-tier-label">Tier 1 · Everyone</div>
+        <span class="device-icon">⭕</span>
+        <div class="device-name">Oura Ring Gen 4</div>
+        <div class="device-brand">Oura · sleep & recovery</div>
+        <div class="device-desc">Sleep stages, HRV, readiness, body temperature. The gold standard ring — feeds directly into your biological age OS daily.</div>
+        <div class="device-tags">
+          <span class="device-tag">Sleep</span>
+          <span class="device-tag">HRV</span>
+          <span class="device-tag">Recovery</span>
+        </div>
+        <div class="device-bottom">
+          <div>
+            <div class="device-price">$349</div>
+            <div class="device-commission">HSA/FSA eligible</div>
+          </div>
+          <button class="device-btn">Shop →</button>
+        </div>
+      </div>
+      <div class="device-card reveal">
+        <div class="device-tier-label">Tier 1 · Everyone</div>
+        <span class="device-icon">⌚</span>
+        <div class="device-name">WHOOP 5.0</div>
+        <div class="device-brand">WHOOP · strain & recovery</div>
+        <div class="device-desc">Strain, recovery, sleep coaching, VO₂ max. Best for members who train hard and want granular recovery data.</div>
+        <div class="device-tags">
+          <span class="device-tag">Strain</span>
+          <span class="device-tag">VO₂ max</span>
+          <span class="device-tag">Recovery</span>
+        </div>
+        <div class="device-bottom">
+          <div>
+            <div class="device-price">$30/mo</div>
+            <div class="device-commission">No hardware cost</div>
+          </div>
+          <button class="device-btn">Shop →</button>
+        </div>
+      </div>
+      <div class="device-card reveal">
+        <div class="device-tier-label">Tier 1 · Metabolic driver</div>
+        <span class="device-icon">💧</span>
+        <div class="device-name">Levels CGM</div>
+        <div class="device-brand">Levels · glucose monitoring</div>
+        <div class="device-desc">Real-time glucose tracking. Shows exactly how food, sleep, stress, and exercise affect blood sugar. The best metabolic feedback tool available.</div>
+        <div class="device-tags">
+          <span class="device-tag">Glucose</span>
+          <span class="device-tag">Metabolic</span>
+          <span class="device-tag">Insulin</span>
+        </div>
+        <div class="device-bottom">
+          <div>
+            <div class="device-price">$199/mo</div>
+            <div class="device-commission">HSA/FSA eligible</div>
+          </div>
+          <button class="device-btn">Shop →</button>
+        </div>
+      </div>
+      <div class="device-card reveal">
+        <div class="device-tier-label">Tier 2 · Sleep driver</div>
+        <span class="device-icon">🛏️</span>
+        <div class="device-name">Eight Sleep Pod 4</div>
+        <div class="device-brand">Eight Sleep · temperature</div>
+        <div class="device-desc">Smart mattress cover with automatic temperature regulation. Clinically shown to increase deep sleep 20–30%. Elite-tier game changer.</div>
+        <div class="device-tags">
+          <span class="device-tag">Deep sleep</span>
+          <span class="device-tag">Temperature</span>
+          <span class="device-tag">Recovery</span>
+        </div>
+        <div class="device-bottom">
+          <div>
+            <div class="device-price">$2,295</div>
+            <div class="device-commission">High-impact investment</div>
+          </div>
+          <button class="device-btn">Shop →</button>
+        </div>
+      </div>
+      <div class="device-card reveal">
+        <div class="device-tier-label">Tier 2 · Inflammation driver</div>
+        <span class="device-icon">🔴</span>
+        <div class="device-name">Joovv Red Light Panel</div>
+        <div class="device-brand">Joovv · photobiomodulation</div>
+        <div class="device-desc">660nm + 850nm red/NIR light. Mitochondrial support, inflammation reduction, skin longevity, testosterone production. 10 min/day.</div>
+        <div class="device-tags">
+          <span class="device-tag">Inflammation</span>
+          <span class="device-tag">Mitochondria</span>
+          <span class="device-tag">Skin</span>
+        </div>
+        <div class="device-bottom">
+          <div>
+            <div class="device-price">$595+</div>
+            <div class="device-commission">Strong evidence base</div>
+          </div>
+          <button class="device-btn">Shop →</button>
+        </div>
+      </div>
+      <div class="device-card reveal">
+        <div class="device-tier-label">Tier 2 · Stress & HRV driver</div>
+        <span class="device-icon">🌊</span>
+        <div class="device-name">Apollo Neuro 2.0</div>
+        <div class="device-brand">Apollo · nervous system</div>
+        <div class="device-desc">Wearable vibration device that shifts your nervous system state. Clinically studied for HRV improvement, cortisol reduction, and sleep quality.</div>
+        <div class="device-tags">
+          <span class="device-tag">HRV</span>
+          <span class="device-tag">Cortisol</span>
+          <span class="device-tag">Sleep</span>
+        </div>
+        <div class="device-bottom">
+          <div>
+            <div class="device-price">$349</div>
+            <div class="device-commission">Clinically studied</div>
+          </div>
+          <button class="device-btn">Shop →</button>
+        </div>
+      </div>
+      <div class="device-card reveal">
+        <div class="device-tier-label">Tier 3 · Advanced</div>
+        <span class="device-icon">🧊</span>
+        <div class="device-name">Plunge Cold Plunge</div>
+        <div class="device-brand">Plunge · cold therapy</div>
+        <div class="device-desc">At-home cold immersion with temperature control. Drives dopamine, norepinephrine, reduces inflammation, improves HRV. The biohacker essential.</div>
+        <div class="device-tags">
+          <span class="device-tag">Inflammation</span>
+          <span class="device-tag">Recovery</span>
+          <span class="device-tag">Dopamine</span>
+        </div>
+        <div class="device-bottom">
+          <div>
+            <div class="device-price">$4,990</div>
+            <div class="device-commission">Highest commission</div>
+          </div>
+          <button class="device-btn">Shop →</button>
+        </div>
+      </div>
+      <div class="device-card reveal">
+        <div class="device-tier-label">Tier 3 · Advanced</div>
+        <span class="device-icon">❤️</span>
+        <div class="device-name">HeartMath InnerBalance</div>
+        <div class="device-brand">HeartMath · HRV biofeedback</div>
+        <div class="device-desc">Clinical-grade HRV biofeedback. 5-minute daily sessions proven to reduce cortisol and raise HRV baseline. Perfect for stress aging driver protocol.</div>
+        <div class="device-tags">
+          <span class="device-tag">HRV</span>
+          <span class="device-tag">Biofeedback</span>
+          <span class="device-tag">Cortisol</span>
+        </div>
+        <div class="device-bottom">
+          <div>
+            <div class="device-price">$299</div>
+            <div class="device-commission">Clinical-grade accuracy</div>
+          </div>
+          <button class="device-btn">Shop →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HSA/FSA ── -->
+<section class="hsa" id="hsa-fsa">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Tax-advantaged longevity</span>
+      <h2 class="section-title">Use your HSA or FSA to<br><em>invest in not aging</em></h2>
+    </div>
+    <div class="hsa-layout reveal">
+      <div>
+        <p style="font-size:15px;color:var(--muted);line-height:1.85;max-width:520px">Your Health Savings Account and Flexible Spending Account dollars are pre-tax money — meaning the government is effectively subsidizing your biological age reversal. Lab testing, diagnostic panels, and qualifying components of your membership can be paid with HSA/FSA funds.</p>
+        <div class="gold-line"></div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.8">At the 37% federal bracket, paying $249/month through HSA/FSA saves over $1,100 per year on eligible diagnostic testing alone. We provide SIGIS-compliant itemized receipts for every purchase — ready to submit to your administrator.</p>
+      </div>
+      <div class="hsa-savings">
+        <div class="hsa-savings-num">37%</div>
+        <div class="hsa-savings-lbl">you could save</div>
+        <div class="hsa-savings-note">At the 37% federal tax bracket<br>on eligible diagnostic expenses</div>
+      </div>
+    </div>
+    <div class="hsa-cols reveal">
+      <div class="hsa-col">
+        <div class="hsa-col-head">
+          <div class="hsa-col-icon green">✓</div>
+          <div class="hsa-col-title green">Clearly eligible</div>
+        </div>
+        <div class="hsa-item">
+          <div class="hsa-dot green"></div>
+          <div>
+            <div class="hsa-item-name">Blood lab panels (60+ biomarkers)</div>
+            <div class="hsa-item-detail">Diagnostic testing qualifies under IRS code 213(d)</div>
+            <span class="hsa-status elig">Eligible</span>
+          </div>
+        </div>
+        <div class="hsa-item">
+          <div class="hsa-dot green"></div>
+          <div>
+            <div class="hsa-item-name">TrueAge epigenetic methylation kit</div>
+            <div class="hsa-item-detail">DNA methylation testing for disease prevention qualifies</div>
+            <span class="hsa-status elig">Eligible</span>
+          </div>
+        </div>
+        <div class="hsa-item">
+          <div class="hsa-dot green"></div>
+          <div>
+            <div class="hsa-item-name">Physician consultations</div>
+            <div class="hsa-item-detail">All telehealth and clinical consultations qualify</div>
+            <span class="hsa-status elig">Eligible</span>
+          </div>
+        </div>
+        <div class="hsa-item">
+          <div class="hsa-dot green"></div>
+          <div>
+            <div class="hsa-item-name">Prescription interventions</div>
+            <div class="hsa-item-detail">Metformin, GLP-1, sleep meds via physician network</div>
+            <span class="hsa-status elig">Eligible</span>
+          </div>
+        </div>
+      </div>
+      <div class="hsa-col">
+        <div class="hsa-col-head">
+          <div class="hsa-col-icon amber">!</div>
+          <div class="hsa-col-title amber">Check with your provider</div>
+        </div>
+        <div class="hsa-item">
+          <div class="hsa-dot amber"></div>
+          <div>
+            <div class="hsa-item-name">Platform membership subscription</div>
+            <div class="hsa-item-detail">Many providers approve — we provide itemized receipts</div>
+            <span class="hsa-status var">Varies by provider</span>
+          </div>
+        </div>
+        <div class="hsa-item">
+          <div class="hsa-dot amber"></div>
+          <div>
+            <div class="hsa-item-name">Supplements (NMN, Omega-3)</div>
+            <div class="hsa-item-detail">Generally eligible when prescribed for a specific condition</div>
+            <span class="hsa-status var">Rx may help</span>
+          </div>
+        </div>
+        <div class="hsa-item">
+          <div class="hsa-dot amber"></div>
+          <div>
+            <div class="hsa-item-name">Wearables (Oura, WHOOP)</div>
+            <div class="hsa-item-detail">Eligible when recommended by physician as monitoring tool</div>
+            <span class="hsa-status var">Varies by provider</span>
+          </div>
+        </div>
+        <div class="hsa-item">
+          <div class="hsa-dot amber"></div>
+          <div>
+            <div class="hsa-item-name">Red light, sauna, cold plunge</div>
+            <div class="hsa-item-detail">May qualify with a letter of medical necessity</div>
+            <span class="hsa-status var">LMN may help</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MEMBERSHIP ── -->
+<section class="membership" id="membership">
+  <div class="container">
+    <div class="section-header reveal" style="margin-left:auto;margin-right:auto;text-align:center">
+      <span class="section-label">Membership</span>
+      <h2 class="section-title" style="margin:0 auto;text-align:center">Choose your<br><em>longevity tier</em></h2>
+      <p class="section-body" style="margin:16px auto 0">Every plan includes the gold-standard TrueAge epigenetic test — the same science, the same clock, clean progress tracking as you grow with us.</p>
+    </div>
+    <div class="plans">
+      <div class="plan reveal">
+        <div class="plan-name">Essentials</div>
+        <div class="plan-tagline">Start your biological age journey</div>
+        <div class="plan-price"><sup>$</sup>99</div>
+        <div class="plan-period">per month</div>
+        <div class="plan-desc">The foundation. Discover your true biological age with the same gold-standard TrueAge epigenetic test used across all our plans — and start reversing it.</div>
+        <ul class="plan-features">
+          <li class="plan-feature">TrueAge Complete epigenetic kit (1× per year)</li>
+          <li class="plan-feature">Full onboarding intake questionnaire</li>
+          <li class="plan-feature">AI-generated aging driver breakdown</li>
+          <li class="plan-feature">Personalized daily protocol</li>
+          <li class="plan-feature">Wearable integration (Oura, WHOOP, Apple Watch)</li>
+          <li class="plan-feature">Estimated bio age — live from wearables daily</li>
+          <li class="plan-feature">Curated supplement & product recommendations</li>
+          <li class="plan-feature">Community — 4 open channels</li>
+        </ul>
+        <button class="plan-btn">Get started</button>
+      </div>
+      <div class="plan featured reveal">
+        <div class="plan-badge">Most popular</div>
+        <div class="plan-name">Optimizer</div>
+        <div class="plan-tagline">The complete biological age OS</div>
+        <div class="plan-price"><sup>$</sup>249</div>
+        <div class="plan-period">per month</div>
+        <div class="plan-desc">The complete protocol. TrueAge testing twice a year, advanced blood labs, AI intervention simulator, and physician access — everything in one dashboard.</div>
+        <ul class="plan-features">
+          <li class="plan-feature">TrueAge Complete epigenetic kit (2× per year)</li>
+          <li class="plan-feature">60+ biomarker blood panel included</li>
+          <li class="plan-feature">Full aging driver engine + intervention simulator</li>
+          <li class="plan-feature">Dynamic roadmap — updated monthly</li>
+          <li class="plan-feature">Clinical AI interpretation of all lab results</li>
+          <li class="plan-feature">Physician referral network access</li>
+          <li class="plan-feature">90-day predicted vs actual tracking</li>
+          <li class="plan-feature">All community channels + monthly live Q&A</li>
+        </ul>
+        <button class="plan-btn">Get started</button>
+      </div>
+      <div class="plan reveal">
+        <div class="plan-name">Elite</div>
+        <div class="plan-tagline">Concierge longevity</div>
+        <div class="plan-price"><sup>$</sup>499</div>
+        <div class="plan-period">per month</div>
+        <div class="plan-desc">For those committed to the most aggressive protocol. Quarterly TrueAge testing, a dedicated physician, and unlimited lab panels — nothing held back.</div>
+        <ul class="plan-features">
+          <li class="plan-feature">TrueAge Complete epigenetic kit (quarterly)</li>
+          <li class="plan-feature">Unlimited lab panels + add-ons</li>
+          <li class="plan-feature">Weekly roadmap optimization</li>
+          <li class="plan-feature">Hormone & peptide protocol guidance</li>
+          <li class="plan-feature">Dedicated longevity physician (yours alone)</li>
+          <li class="plan-feature">Monthly 1:1 coaching sessions</li>
+          <li class="plan-feature">At-home blood draw — no clinic needed</li>
+          <li class="plan-feature">All community channels + Elite-only space</li>
+        </ul>
+        <button class="plan-btn">Apply for Elite</button>
+      </div>
+    </div>
+    <div class="plans-note reveal">
+      <span>TrueAge epigenetic testing included on every plan</span> · HSA/FSA accepted · No doctor visit required · Cancel anytime
+    </div>
+  </div>
+</section>
+
+<!-- ── REFERRAL ── -->
+<section class="referral" id="referral">
+  <div class="container">
+    <div class="referral-layout">
+      <div class="reveal">
+        <span class="section-label">Refer a friend</span>
+        <h2 class="section-title">Longevity is better<br><em>shared</em></h2>
+        <div class="gold-line"></div>
+        <p class="section-body" style="margin-top:0">When you see results, you'll want to share them. We've made it easy — and rewarding. Every member gets a unique referral link in their dashboard.</p>
+        <div class="referral-rewards">
+          <div class="reward-card">
+            <span class="reward-icon">🎁</span>
+            <div class="reward-title">Refer 1 friend</div>
+            <div class="reward-desc">Get 1 month free added to your membership</div>
+          </div>
+          <div class="reward-card">
+            <span class="reward-icon">🧬</span>
+            <div class="reward-title">Refer 3 friends</div>
+            <div class="reward-desc">Free quarterly TrueAge re-test — $250 value</div>
+          </div>
+          <div class="reward-card">
+            <span class="reward-icon">⭐</span>
+            <div class="reward-title">Refer 5 friends</div>
+            <div class="reward-desc">Elite upgrade for 3 months — on us</div>
+          </div>
+          <div class="reward-card">
+            <span class="reward-icon">💸</span>
+            <div class="reward-title">Your friend gets</div>
+            <div class="reward-desc">20% off their first 3 months — a welcome gift</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="flywheel">
+          <div class="flywheel-title">The growth flywheel</div>
+          <div class="flywheel-steps">
+            <div class="flywheel-step">
+              <span class="flywheel-arrow">→</span>
+              <div class="flywheel-text">Member sees real results</div>
+            </div>
+            <div class="flywheel-step">
+              <span class="flywheel-arrow">→</span>
+              <div class="flywheel-text">Posts win to community</div>
+            </div>
+            <div class="flywheel-step">
+              <span class="flywheel-arrow">→</span>
+              <div class="flywheel-text">Refers a friend</div>
+            </div>
+            <div class="flywheel-step">
+              <span class="flywheel-arrow">→</span>
+              <div class="flywheel-text">More members join</div>
+            </div>
+            <div class="flywheel-step">
+              <span class="flywheel-arrow">→</span>
+              <div class="flywheel-text">AI predictions improve</div>
+            </div>
+            <div class="flywheel-step">
+              <span class="flywheel-arrow">→</span>
+              <div class="flywheel-text">Better results for everyone</div>
+            </div>
+            <div class="flywheel-step">
+              <span class="flywheel-arrow">↺</span>
+              <div class="flywheel-text" style="color:var(--gold)">Cycle continues</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FINAL CTA ── -->
+<section class="final-cta">
+  <div class="container">
+    <div class="reveal">
+      <h2 class="final-cta-title">Ready to see<br><em>your</em> plan?</h2>
+      <p class="final-cta-sub">Join YoungerYouClub and within 7 days you'll know your biological age, what's aging you fastest, and exactly what to do about it — all in one personalized action plan built around your biology.</p>
+      <div class="hero-actions" style="margin-bottom:0">
+        <button class="btn-primary" onclick="document.getElementById('membership').scrollIntoView({behavior:'smooth'})">
+          Start my personalized plan
+        </button>
+        <button class="btn-ghost" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">
+          See how it works
+        </button>
+      </div>
+      <div class="final-cta-note"><span>HSA/FSA accepted</span> · No doctor visit required · Cancel anytime</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Younger<span>You</span>Club</div>
+        <p class="footer-brand-desc">A precision longevity membership platform helping members discover, track, and reverse their biological age through science-backed protocols and personalized interventions.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Platform</div>
+        <ul class="footer-links">
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#aging-engine">Aging driver engine</a></li>
+          <li><a href="#pillars">Longevity pillars</a></li>
+          <li><a href="#devices">Device store</a></li>
+          <li><a href="#membership">Membership</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Community</div>
+        <ul class="footer-links">
+          <li><a href="#community">Member community</a></li>
+          <li><a href="#">The Lounge</a></li>
+          <li><a href="#">Wins board</a></li>
+          <li><a href="#">Monthly Q&A</a></li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Clinical team</a></li>
+          <li><a href="#">Research</a></li>
+          <li><a href="#hsa-fsa">HSA / FSA</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 YoungerYouClub. All rights reserved.</div>
+      <div class="footer-tagline">Age is a starting point, not a destination.</div>
+      <div class="footer-legal">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Affiliate disclosure</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+// Animate driver bars on scroll
+const driverBars = document.querySelectorAll('.driver-bar');
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.width = entry.target.style.width;
+      barObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+driverBars.forEach(bar => barObserver.observe(bar));
+</script>
+</body>
+</html>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="YoungerYouClub — Discover your biological age and reverse it. A precision longevity membership platform with personalized action plans, AI-driven protocols, and science-backed interventions."/>
 <title>YoungerYouClub — Biological Age Operating System</title>
