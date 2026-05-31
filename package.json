@@ -1,0 +1,8 @@
+{
+  "name": "youngeryouclub",
+  "version": "1.0.0",
+  "description": "YoungerYouClub longevity membership platform",
+  "dependencies": {
+    "stripe": "^14.0.0"
+  }
+}
