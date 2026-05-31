@@ -42,7 +42,6 @@ module.exports = async (req, res) => {
       },
       allow_promotion_codes: true,
       billing_address_collection: 'auto',
-      customer_creation: 'always',
     });
 
     return res.status(200).json({ url: session.url });
