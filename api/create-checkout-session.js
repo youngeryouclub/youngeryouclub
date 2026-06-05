@@ -30,6 +30,22 @@ module.exports = async (req, res) => {
           quantity: 1,
         },
       ],
+      shipping_address_collection: {
+        allowed_countries: ['US'],
+      },
+      shipping_options: [
+        {
+          shipping_rate_data: {
+            type: 'fixed_amount',
+            fixed_amount: { amount: 0, currency: 'usd' },
+            display_name: 'TrueAge Kit Delivery',
+            delivery_estimate: {
+              minimum: { unit: 'business_day', value: 2 },
+              maximum: { unit: 'business_day', value: 5 },
+            },
+          },
+        },
+      ],
       success_url: successUrl || `${req.headers.origin}/checkout.html?success=true`,
       cancel_url: cancelUrl || `${req.headers.origin}/checkout.html`,
       metadata: {
