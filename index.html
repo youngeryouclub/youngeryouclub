@@ -4,7 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="YoungerYouClub — Discover your biological age and reverse it. A precision longevity membership platform with personalized action plans, AI-driven protocols, and science-backed interventions."/>
-<title>YoungerYouClub — Biological Age Operating System</title>
+<link rel="icon" type="image/png" href="youngeryouclub-logo.png"/>
+<title>YoungerYouClub — Know Your Biology. Change Your Future.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -71,8 +72,9 @@ button{cursor:pointer;font-family:var(--sans)}
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;align-items:center;justify-content:space-between;
-  padding:20px 48px;
+  padding:12px 48px;
   transition:background .4s,padding .3s;
+  background:rgba(28,35,32,0.85);backdrop-filter:blur(12px);
 }
 nav.scrolled{background:rgba(28,35,32,0.97);backdrop-filter:blur(16px);padding:14px 48px;border-bottom:1px solid rgba(107,184,146,0.12)}
 .nav-logo{font-family:var(--serif);font-size:1.3rem;letter-spacing:.05em;color:var(--gold)}
@@ -534,7 +536,17 @@ footer{background:var(--ink);border-top:1px solid rgba(107,184,146,0.08);padding
 
 <!-- ── NAVIGATION ── -->
 <nav id="nav">
-  <a href="#" class="nav-logo">Younger<span>You</span>Club</a>
+  <a href="#" class="nav-logo">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <span style="font-family:var(--serif);font-size:14px;color:var(--cream);letter-spacing:1px;line-height:1;">YC</span>
+      </div>
+      <div>
+        <div style="font-family:var(--sans);font-size:10px;letter-spacing:4px;color:var(--cream);text-transform:uppercase;line-height:1.2;">Younger You Club</div>
+        <div style="font-family:var(--sans);font-size:7px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;">Know Your Biology. Change Your Future.</div>
+      </div>
+    </div>
+  </a>
   <div class="nav-links">
     <a href="#how-it-works">How it works</a>
     <a href="#pillars">Protocols</a>
@@ -1526,7 +1538,15 @@ footer{background:var(--ink);border-top:1px solid rgba(107,184,146,0.08);padding
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand-name">Younger<span>You</span>Club</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+        <div style="width:44px;height:44px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <span style="font-family:var(--serif);font-size:16px;color:var(--cream);letter-spacing:1px;line-height:1;">YC</span>
+        </div>
+        <div>
+          <div style="font-family:var(--sans);font-size:11px;letter-spacing:4px;color:var(--cream);text-transform:uppercase;line-height:1.2;">Younger You Club</div>
+          <div style="font-family:var(--sans);font-size:8px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:3px;">Know Your Biology. Change Your Future.</div>
+        </div>
+      </div>
         <p class="footer-brand-desc">A precision longevity membership platform helping members discover, track, and reverse their biological age through science-backed protocols and personalized interventions.</p>
       </div>
       <div>
